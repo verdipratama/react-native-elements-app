@@ -20,7 +20,7 @@ import {
   ListItem,
   Avatar,
 } from 'react-native-elements';
-
+import TouchableScale from 'react-native-touchable-scale';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 import colors from 'HSColors';
@@ -198,7 +198,7 @@ class Icons extends Component {
         <View style={styles.list}>
           {list2.map((l, i) => (
             <ListItem
-              leftAvatar={{ rounded: true, source: { uri: l.avatar_url } }}
+              leftAvatar={{ title: l.name[0], source: { uri: l.avatar_url } }}
               key={i}
               onPress={log}
               title={l.name}
@@ -287,13 +287,12 @@ class Icons extends Component {
         <View style={{ backgroundColor: '#ECEFF1', paddingVertical: 8 }}>
           {list2.map((l, i) => (
             <ListItem
+              component={TouchableScale}
+              friction={90}
+              tension={100}
+              activeScale={0.95}
               leftAvatar={{ rounded: true, source: { uri: l.avatar_url } }}
               key={i}
-              scaleProps={{
-                friction: 90,
-                tension: 100,
-                activeScale: 0.95,
-              }}
               linearGradientProps={{
                 colors: l.linearGradientColors,
                 start: [1, 0],
